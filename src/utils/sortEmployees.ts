@@ -13,7 +13,7 @@ export const sortEmployees = (
     if (sort.value === SortValue.ASC) compareTuple.reverse();
 
     if (sort.key === SortName.NAME) {
-      return compareTuple[0] < compareTuple[1] ? 1 : -1;
+      return compareTuple[0].name.localeCompare(compareTuple[1].name);
     };
     if (sort.key === SortName.BIRTHDAY) {
       const employeeDateA = parse(compareTuple[0].birthday, DATE_FORMAT, new Date());

@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Employee, EmployeeDto, EmployeeEditPayload, EmployeeSearchParams, Nullable } from "@/common/type";
+import {
+  Employee,
+  EmployeeDto,
+  EmployeeEditPayload,
+  EmployeeSearchParams,
+} from "@/common/type";
 import { EMPLOYEE_API_INVALIDATION_TAGS } from '@/common/constant';
 import { EmployeeIvalidationTag } from '@/common/enum';
 import {
@@ -15,8 +20,25 @@ export const employeesApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_BASE }),
   tagTypes: EMPLOYEE_API_INVALIDATION_TAGS,
   endpoints: (builder) => ({
-    getEmployees: builder.query<Array<Employee>, Nullable<EmployeeSearchParams>>({
-      providesTags: [EmployeeIvalidationTag.ALL_EMPLOYEES],
+    getEmployees: builder.query<Array<Employee>, EmployeeSearchParams>({
+      providesTags: (_res, _meta, params) => {
+        const searchParams = new URLSearchParams();
+        const flattedParams = ({
+          sortKey: params.sort.key,
+          sortValue: params.sort.value,
+          isArchive: params.filter.isArchive,
+          role: params.filter.role,
+        });
+
+        Object.entries(flattedParams).forEach(
+          ([key, value]) => searchParams.append(key, String(value || ""))
+        );
+
+        return [{
+          type: EmployeeIvalidationTag.ALL_EMPLOYEES,
+          id: searchParams.toString(),
+        }];
+      },
       query: () => "",
       transformResponse: (_res, _meta, params) => getEmployees(params),
     }),
