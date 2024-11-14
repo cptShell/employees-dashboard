@@ -1,10 +1,10 @@
-import { EmployeeRole } from "@/common/enum";
+import { EmployeeRole, SortName } from "@/common/enum";
 
 export type Employee = {
   id: number,
-  name: string,
+  [SortName.NAME]: string,
   isArchive: boolean,
   role: EmployeeRole,
   phone: string;
-  birthday: string;
+  [SortName.BIRTHDAY]: string;
 };

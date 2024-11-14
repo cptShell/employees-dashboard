@@ -1,50 +1,52 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Employee } from "@/common/type";
+import { Employee, EmployeeDto, EmployeeEditPayload, EmployeeSearchParams, Nullable } from "@/common/type";
+import { EMPLOYEE_API_INVALIDATION_TAGS } from '@/common/constant';
+import { EmployeeIvalidationTag } from '@/common/enum';
+import {
+  createEmployee,
+  deleteEmployee,
+  editEmployee,
+  getEmployee,
+  getEmployees,
+} from '@/common/api';
 
 export const employeesApi = createApi({
-  reducerPath: 'employees-api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
+  reducerPath: 'employees',
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_BASE }),
+  tagTypes: EMPLOYEE_API_INVALIDATION_TAGS,
   endpoints: (builder) => ({
-    getEmployees: builder.query<Array<Employee>, void>({
-      query: () => '/employees', // Dummy endpoint when fetching from JSON
-      async onQueryStarted(_, { queryFulfilled }) {
-        try {
-          await queryFulfilled;
-        } catch {
-          // Handle error case
-        }
-      },
+    getEmployees: builder.query<Array<Employee>, Nullable<EmployeeSearchParams>>({
+      providesTags: [EmployeeIvalidationTag.ALL_EMPLOYEES],
+      query: () => "",
+      transformResponse: (_res, _meta, params) => getEmployees(params),
     }),
-    getEmployeeById: builder.query<Employee | undefined, number>({
-      query: (id) => `/employees/${id}`, // Dummy endpoint
-      async onQueryStarted(id, { queryFulfilled }) {
-        try {
-          const { data } = await queryFulfilled;
-          if (!data) return;
-        } catch {
-          // Handle error case
-        }
-      },
+    getEmployee: builder.query<Employee | null, number>({
+      providesTags: [EmployeeIvalidationTag.SINGLE_EMPLOYEE],
+      query: () => "",
+      transformResponse: (_res, _meta, id) => getEmployee(id),
     }),
-    addEmployee: builder.mutation<Employee, Partial<Employee>>({
-      query: (newEmployee) => ({
-        method: 'POST',
-        url: '/employees', // Dummy endpoint
-        body: newEmployee,
-      }),
+    createEmployee: builder.mutation<Employee | null, EmployeeDto>({
+      invalidatesTags: [EmployeeIvalidationTag.ALL_EMPLOYEES],
+      query: () => "",
+      transformResponse: (_res, _, payload) => createEmployee(payload),
     }),
-    updateEmployee: builder.mutation<Employee, Employee>({
-      query: (updatedEmployee) => ({
-        method: 'PUT',
-        url: `/employees/${updatedEmployee.id}`, // Dummy endpoint
-        body: updatedEmployee,
-      }),
+    editEmployee: builder.mutation<Employee | null, EmployeeEditPayload>({
+      invalidatesTags: EMPLOYEE_API_INVALIDATION_TAGS,
+      query: () => "",
+      transformResponse: (_res, _meta, { payload, id }) => editEmployee(payload, id),
     }),
-    deleteEmployee: builder.mutation<{ success: boolean }, number>({
-      query: (id) => ({
-        method: 'DELETE',
-        url: `/employees/${id}`, // Dummy endpoint
-      }),
+    deleteEmployee: builder.mutation<Employee | null, number>({
+      invalidatesTags: EMPLOYEE_API_INVALIDATION_TAGS,
+      query: () => "",
+      transformResponse: (_res, _meta, id) => deleteEmployee(id),
     }),
   }),
-})
+});
+
+export const {
+  useGetEmployeesQuery,
+  useGetEmployeeQuery,
+  useCreateEmployeeMutation,
+  useEditEmployeeMutation,
+  useDeleteEmployeeMutation,
+} = employeesApi;

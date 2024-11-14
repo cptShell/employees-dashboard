@@ -2,16 +2,12 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { EmployeeSort } from '@/common/type';
 import { SortName, SortValue } from '@/common/enum';
+import { INITIAL_SORT } from '@/common/constant';
 
-export interface SortSlice {
-  sort: EmployeeSort;
-};
+type SortSlice = { sort: EmployeeSort };
 
 const initialState: SortSlice = {
-  sort: {
-    key: SortName.BIRTHDATE,
-    value: SortValue.DESC,
-  },
+  sort: INITIAL_SORT
 };
 
 export const employeeFilterSlice = createSlice({
@@ -22,7 +18,7 @@ export const employeeFilterSlice = createSlice({
       state.sort.key = action.payload;
     },
     setSortOrder: (state, action: PayloadAction<SortValue>) => {
-      state.sort.value = action.payload
+      state.sort.value = action.payload;
     }
   },
 });
