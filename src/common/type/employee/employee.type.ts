@@ -1,4 +1,4 @@
-import { EmployeeRole } from "../enum";
+import { EmployeeRole } from "@/common/enum";
 
 export type Employee = {
   id: number,

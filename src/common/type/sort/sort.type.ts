@@ -1,4 +1,4 @@
-import { SortName, SortValue } from "../enum";
+import { SortName, SortValue } from "@/common/enum";
 
 export type EmployeeSort = {
   key: SortName;

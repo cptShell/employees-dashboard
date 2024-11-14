@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import sortSlice from "./slice/sortSlice";
-import filterSlice from "./slice/filterSlice";
+import sortSlice from "./slice/sort.slice";
+import filterSlice from "./slice/filter.slice";
 import { useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({

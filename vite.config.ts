@@ -2,6 +2,7 @@ import path from "path";
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react';
 import compression from 'vite-plugin-compression2';
+import fs from 'vite-plugin-fs';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,6 +11,7 @@ export default defineConfig({
     compression({
       algorithm: 'brotliCompress', exclude: [/\.(br)$ /, /\.(gz)$/],
     }),
+    fs(),
   ],
   build: {
     rollupOptions: {
