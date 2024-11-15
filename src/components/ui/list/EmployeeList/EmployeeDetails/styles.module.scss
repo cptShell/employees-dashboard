@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.phone, .birthday {
+  font-size: 1rem;
+  color: var(--label);
+}

@@ -1,6 +1,6 @@
 import { Route, createRoutesFromElements } from "react-router-dom";
 import { EmployeesPage } from "@/components/page";
-import { AppLayout } from "@/components/layout/AppLayout";
+import { AppLayout } from "@/components/layout";
 import { RoutePath } from "@/common/enum";
 import { EmployeePage } from "@/components/page/employee";
 

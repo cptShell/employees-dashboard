@@ -1,7 +1,9 @@
-import { FC, memo } from "react";
+import { FC, memo, useId } from "react";
 import clsx from "clsx";
 import { SortName, SortValue } from "@/common/enum";
 import styles from "./styles.module.scss";
+import { motion } from "framer-motion";
+import { ArrowIcon } from "../../icon";
 
 type Props = {
   isActive: boolean;
@@ -18,10 +20,31 @@ export const EmployeeSortButton: FC<Props> = memo(({
   onClick,
   value,
 }) => {
+  const id = useId();
+
+  const activeChecked = value === SortValue.DESC ? "rotated" : "initial";
+
   return (
-    <label className={clsx(isActive && styles.active)}>
+    <label
+      htmlFor={id}
+      className={clsx(isActive && styles.active, styles.container)}
+    >
       <p>{title}</p>
-      <button onClick={() => onClick(key)}>{value}</button>
+      <input
+        id={id}
+        className={styles.checkbox}
+        type="checkbox"
+        checked={value === SortValue.ASC}
+        onChange={() => onClick(key)}
+      />
+      <motion.div
+        initial={{ rotate: 0 }}
+        variants={{ rotated: { rotate: 180 } }}
+        animate={isActive ? activeChecked : "initial"}
+        className={styles.motion}
+      >
+        <ArrowIcon />
+      </motion.div>
     </label>
   ) 
 });

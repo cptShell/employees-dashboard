@@ -1,8 +1,6 @@
-import { FC, PropsWithChildren } from "react";
-import styles from "./styles.module.scss";
+import { FC } from "react";
 import { Outlet, ScrollRestoration } from "react-router-dom";
-
-type Props = PropsWithChildren;
+import styles from "./styles.module.scss";
 
 export const AppLayout: FC = () => {
   return (
@@ -14,5 +12,5 @@ export const AppLayout: FC = () => {
       </div>
       <ScrollRestoration />
     </>
-  )
+  );
 };

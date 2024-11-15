@@ -1,0 +1,14 @@
+.container {
+  min-width: 16rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.reset {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: var(--danger);
+}

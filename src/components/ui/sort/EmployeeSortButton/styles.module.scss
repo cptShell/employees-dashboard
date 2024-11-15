@@ -1,3 +1,21 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .active {
-  background-color: rgba(255, 0, 0, 0.5);
+  color: var(--primary);
+}
+
+.checkbox {
+  display: none;
+}
+
+.motion {
+  width: min-content;
 }

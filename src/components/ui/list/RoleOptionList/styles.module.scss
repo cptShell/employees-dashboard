@@ -1,0 +1,16 @@
+.item {
+  padding: 0.25rem;
+  background-color: white;
+  transition: color 100ms ease-out, background-color 100ms ease-out;
+
+  &.active {
+    background-color: var(--primary);
+    color: white;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--grey-300);
+    color: white;
+  }
+}

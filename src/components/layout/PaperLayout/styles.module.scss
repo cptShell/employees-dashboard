@@ -1,0 +1,16 @@
+.layout {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 0.5rem;
+  border: 1px solid var(--grey-100);
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: var(--paper-bg);
+}
+
+.label {
+  font-size: 0.8rem;
+  color: var(--label);
+}

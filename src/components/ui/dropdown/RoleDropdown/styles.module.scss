@@ -1,0 +1,41 @@
+.container {
+  position: relative;
+}
+
+.blocked {
+  pointer-events: none;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 160px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+
+  .icon {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 250ms ease-in;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    .icon {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+.options {
+  width: 100%;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+}

@@ -1,0 +1,16 @@
+@import url("./fonts.scss");
+@import url("./reset.scss");
+@import url("./color.scss");
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: "Quicksand", Arial, Helvetica, sans-serif;
+}
+
+button {
+  all: unset;
+  font-family: "Quicksand", Arial, Helvetica, sans-serif;
+}

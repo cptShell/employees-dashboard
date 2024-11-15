@@ -1,0 +1,13 @@
+.container {
+  width: 50;
+  height: 50;
+  border-radius: 5rem;
+  border: "4px solid";
+  border-color: "var(--primary)";
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+
+.upscaled {
+  transform: scale(1.8);
+}

@@ -1,0 +1,9 @@
+.reset {
+  font-size: 0.8rem;
+  color: var(--error);
+  display: flex;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
