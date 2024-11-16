@@ -1,4 +1,10 @@
 .container {
   display: flex;
   justify-content: space-between;
+  flex-grow: 1;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
 }

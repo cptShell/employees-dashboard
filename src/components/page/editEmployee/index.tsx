@@ -6,6 +6,7 @@ import { EmployeePageHeading } from "@/components/ui/heading";
 import { EmployeesLoader } from "@/components/ui/loader";
 import { NoEmployeePlaceholder } from "@/components/ui/placeholder";
 import { useGetEmployeeQuery } from "@/store/api/employees.api";
+import { AnimatePresence, motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 
 export const EditEmployeePage = () => {
@@ -33,11 +34,19 @@ export const EditEmployeePage = () => {
   return (
     <PageLayout>
       <EmployeePageHeading mode={EmployeeFormMode.EDIT} />
-      {isSuccess && employee !== null && (
-        <FormLayout>
-          <EmployeeForm employee={employee} />
-        </FormLayout>
-      )}
+      <AnimatePresence>
+        {isSuccess && employee !== null && (
+          <motion.div
+            variants={{ appear: { opacity: 1 } }}
+            initial={{ opacity: 0 }}
+            animate="appear"
+          >
+            <FormLayout>
+              <EmployeeForm employee={employee} />
+            </FormLayout>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </PageLayout>
   );
 }
