@@ -1,8 +1,9 @@
-import { Route, createRoutesFromElements } from "react-router-dom";
-import { EmployeesPage } from "@/components/page";
+import { Route, createRoutesFromElements, redirect } from "react-router-dom";
+import { CreateEmployeePage, EmployeesPage } from "@/components/page";
 import { AppLayout } from "@/components/layout";
 import { RoutePath } from "@/common/enum";
-import { EmployeePage } from "@/components/page/employee";
+import { EditEmployeePage } from "@/components/page/editEmployee";
+import { ErrorBoundary } from "@/components/boundary";
 
 export const routes = createRoutesFromElements(
   <Route element={<AppLayout />}>
@@ -12,8 +13,15 @@ export const routes = createRoutesFromElements(
       element={<EmployeesPage />}
     />
     <Route
-      path={`${RoutePath.EMPLOYEES}/:id`}
-      element={<EmployeePage />}
+      path={`${RoutePath.EMPLOYEES}/create`}
+      element={<CreateEmployeePage />}
+      ErrorBoundary={ErrorBoundary}
     />
+    <Route
+      path={`${RoutePath.EMPLOYEES}/:id`}
+      element={<EditEmployeePage />}
+      ErrorBoundary={ErrorBoundary}
+    />
+    <Route path="*" loader={() => redirect(RoutePath.INDEX)} />
   </Route>
 )

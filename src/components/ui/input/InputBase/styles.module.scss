@@ -1,0 +1,10 @@
+.input {
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--grey-100);
+
+  &.error {
+    border: 1px solid var(--error);
+  }
+}

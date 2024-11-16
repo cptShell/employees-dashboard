@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  display: flex;
 }
 
 .blocked {
@@ -10,7 +11,8 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  width: 160px;
+  min-width: 160px;
+  flex-grow: 1;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 0.25rem;
   padding: 0.25rem;
@@ -32,6 +34,7 @@
 }
 
 .options {
+  opacity: 0;
   width: 100%;
   border-radius: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);

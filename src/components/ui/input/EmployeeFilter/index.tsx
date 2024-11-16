@@ -1,11 +1,10 @@
-import { ROLE_OPTIONS } from "@/common/constant";
-import { AcrchiveCheckbox } from ".."
-import { RoleDropdown } from "../../dropdown"
-import { PaperLayout } from "@/components/layout/PaperLayout";
-import styles from "./styles.module.scss";
-import { ResetButton } from "../../button";
 import { motion } from "framer-motion";
+import { DashboardAcrchiveCheckbox } from ".."
+import { ResetButton } from "../../button";
+import { DashboardRoleDropdown } from "../../dropdown/PickRoleDropdown";
 import { useAppSelector } from "@/store/store";
+import { PaperLayout } from "@/components/layout";
+import styles from "./styles.module.scss";
 
 export const EmployeeFilter = () => {
   const { filter } = useAppSelector(state => state.filter);
@@ -13,8 +12,8 @@ export const EmployeeFilter = () => {
   return (
     <PaperLayout title="Фильтр">
       <div className={styles.container}>
-        <RoleDropdown options={ROLE_OPTIONS} />
-        <AcrchiveCheckbox />
+        <DashboardRoleDropdown />
+        <DashboardAcrchiveCheckbox />
       </div>
       <motion.div
         initial={{ top: 16, right: 16, position: "absolute" }}
@@ -22,6 +21,7 @@ export const EmployeeFilter = () => {
           hidden: { opacity: 0, pointerEvents: "none" },
           visible: { opacity: 1 },
         }}
+        style={{ opacity: 0 }}
         animate={filter.isArchive !== undefined ? "visible" : "hidden"}
       >
         <ResetButton />

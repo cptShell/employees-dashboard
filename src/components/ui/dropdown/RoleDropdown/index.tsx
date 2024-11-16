@@ -1,54 +1,49 @@
 import { FC, useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/store/store";
-import { setFilterByRole } from "@/store/slice/filter.slice";
+import clsx from "clsx";
+import { motion } from "framer-motion";
 import { MenuIcon } from "../../icon";
 import { RoleOptionList } from "../../list";
 import { useOutsideClick } from "@/hooks";
 import { EmployeeRole } from "@/common/enum";
-import { ROLE_OPTIONS } from "@/common/constant";
 import { Nullable, RoleOption } from "@/common/type";
 import styles from "./styles.module.scss";
-import { motion } from "framer-motion";
-import clsx from "clsx";
 
 type Props = {
-  options: Array<RoleOption>,
+  options: Array<RoleOption>;
+  value: Nullable<EmployeeRole>;
+  onSelect: (value: Nullable<EmployeeRole>) => void;
 };
 
-export const RoleDropdown: FC<Props> = ({ options }) => {
+export const RoleDropdown: FC<Props> = ({ options, value, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { filter } = useAppSelector(state => state.filter);
-  const dispatch = useAppDispatch();
-  const ref = useOutsideClick<HTMLDivElement>(() => setIsOpen(false));
 
-  const handleSelect = (value: Nullable<EmployeeRole>) => {
-    dispatch(setFilterByRole(value));
-  }
+  const ref = useOutsideClick<HTMLDivElement>(() => setIsOpen(false));
 
   const handleOpen = () => {
     if (!isOpen) setIsOpen(true);
   }
 
-  const targetLabel = options.find(({ value }) => value === filter.role);
+  const targetLabel = options.find((option) => option.value === value);
 
   return (
     <div className={styles.container} onClick={handleOpen}>
-      <button className={clsx(styles.button, isOpen && styles.blocked)}>
-        {targetLabel?.label || ROLE_OPTIONS[0].label}
+      <button onClick={(e) => e.preventDefault()} className={clsx(styles.button, isOpen && styles.blocked)}>
+        {targetLabel?.label || options[0].label}
         <MenuIcon width={16} />
       </button>
       <motion.div
         ref={ref}
         className={styles.options}
-        onAnimationComplete={(def) => console.log(def)}
         animate={isOpen ? "opened" : "closed"}
         variants={{
-          closed: { opacity: 0, top: 15, scale: 0.85 },
+          closed: { opacity: 0, top: 15, scale: 0.85, pointerEvents: "none" },
           opened: { opacity: 1, top: 30, scale: 1 },
         }}
       >
         <RoleOptionList
-          onSelect={handleSelect}
+          target={targetLabel}
+          options={options}
+          onSelect={onSelect}
           onClose={() => setIsOpen(false)}
         />
       </motion.div>

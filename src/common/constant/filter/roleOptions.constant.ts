@@ -7,3 +7,5 @@ export const ROLE_OPTIONS: Array<RoleOption> = [
   { label: "водитель", value: EmployeeRole.DRIVER },
   { label: "офицант", value: EmployeeRole.WAITER },
 ];
+
+export const CREATE_ROLE_OPTIONS: Array<RoleOption> = ROLE_OPTIONS.filter(({ value }) => Boolean(value));

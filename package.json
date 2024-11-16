@@ -22,10 +22,12 @@
     }
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
     "@reduxjs/toolkit": "^2.3.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^11.11.17",
+    "joi": "^17.13.3",
     "lottie-react": "^2.4.0",
     "moment": "^2.30.1",
     "react": "^18.2.0",
@@ -41,16 +43,21 @@
     "@types/react": "^18.2.43",
     "@types/react-beautiful-dnd": "^13.1.8",
     "@types/react-dom": "^18.2.17",
+    "@types/react-input-mask": "^3.0.6",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.55.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "globals": "^15.12.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
+    "react-imask": "^7.6.1",
     "sass": "^1.80.7",
     "typescript": "^5.2.2",
+    "typescript-eslint": "^8.14.0",
     "vite": "^5.0.8"
   }
 }

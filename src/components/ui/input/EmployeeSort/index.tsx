@@ -1,9 +1,9 @@
 import { SortName, SortValue } from "@/common/enum"
 import { EmployeeSortButton } from "../../sort"
+import { PaperLayout } from "@/components/layout";
 import { useAppDispatch, useAppSelector } from "@/store/store"
 import { setSortBy } from "@/store/slice/sort.slice";
 import styles from "./styles.module.scss";
-import { PaperLayout } from "@/components/layout/PaperLayout";
 
 export const EmployeeSort = () => {
   const { sort } = useAppSelector(state => state.sort);
