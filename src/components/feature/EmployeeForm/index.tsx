@@ -18,7 +18,7 @@ import {
 } from "@/store/api/employees.api";
 import { CoverLoader } from "@/components/ui/loader";
 import { useNavigate } from "react-router-dom";
-import { RoutePath } from "@/common/enum";
+import { EmployeeRole, RoutePath } from "@/common/enum";
 import style from "./styles.module.scss";
 
 type Props = {
@@ -42,7 +42,9 @@ export const EmployeeForm: FC<Props> = ({ employee }) => {
     setValue,
   } = useForm<EmployeeDto>({
     resolver: joiResolver(EmployeeValidationSchema),
-    defaultValues: employee ? toDto(employee) : { isArchive: false },
+    defaultValues: employee
+      ? toDto(employee)
+      : { isArchive: false, role: EmployeeRole.COOK },
   });
   const navigate = useNavigate();
   const { errors } = formState;
@@ -57,7 +59,7 @@ export const EmployeeForm: FC<Props> = ({ employee }) => {
 
     if (!!data) navigate(RoutePath.INDEX);
   }
-
+  console.log(errors, role);
   return (
     <div className={style.container}>
       <PaperLayout>
