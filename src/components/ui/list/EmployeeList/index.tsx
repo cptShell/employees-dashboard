@@ -26,7 +26,7 @@ export const EmployeeList = () => {
     >
       <ListLayout>
         {employees.map(employee => (
-          <EmployeeListItem employee={employee} />
+          <EmployeeListItem key={employee.id} employee={employee} />
         ))}
         {isFetching && <CoverLoader />}
       </ListLayout>

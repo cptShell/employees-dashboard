@@ -3,7 +3,7 @@ import { HeadingLayout } from "@/components/layout";
 export const EmployeesPageHeading = () => {
   return (
     <HeadingLayout>
-      <h1>Employee Dashboard</h1>
+      <h1>Панель управления сотрудниками</h1>
     </HeadingLayout>
   );
 }
