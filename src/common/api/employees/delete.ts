@@ -1,5 +1,4 @@
 import { Employee } from "@/common/type";
-import fs from "vite-plugin-fs/browser";
 import { getEmployees } from ".";
 
 export const deleteEmployee = async (id: number): Promise<Employee | null> => {
@@ -11,7 +10,7 @@ export const deleteEmployee = async (id: number): Promise<Employee | null> => {
 
   const removedEmployee = employees.splice(deleteIndex, 1);
 
-  await fs.writeFile(import.meta.env.VITE_API_BASE, JSON.stringify(employees));
+  localStorage.setItem(import.meta.env.VITE_STORAGE_KEY, JSON.stringify(employees));
   
   return removedEmployee[0];
 }

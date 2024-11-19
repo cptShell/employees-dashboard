@@ -1,22 +1,22 @@
 import { FC, memo, useId } from "react";
 import clsx from "clsx";
-import { SortName, SortValue } from "@/common/enum";
-import styles from "./styles.module.scss";
 import { motion } from "framer-motion";
+import { SortName, SortValue } from "@/common/enum";
 import { ArrowIcon } from "../../icon";
+import styles from "./styles.module.scss";
 
 type Props = {
   isActive: boolean;
   title: string;
   onClick: (key: SortName) => void;
-  key: SortName;
+  sortKey: SortName;
   value: SortValue;
 }
 
 export const EmployeeSortButton: FC<Props> = memo(({
   isActive,
   title,
-  key,
+  sortKey,
   onClick,
   value,
 }) => {
@@ -35,7 +35,7 @@ export const EmployeeSortButton: FC<Props> = memo(({
         className={styles.checkbox}
         type="checkbox"
         checked={value === SortValue.ASC}
-        onChange={() => onClick(key)}
+        onChange={() => onClick(sortKey)}
       />
       <motion.div
         initial={{ rotate: 0 }}

@@ -28,9 +28,3 @@ export const RoleField: FC<Props> = ({
 };
 
 export default RoleField;
-
-
-
-// options={CREATE_ROLE_OPTIONS}
-// onSelect={(value) => value && setValue("role", value)}
-// value={role}
