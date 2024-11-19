@@ -18,7 +18,6 @@ export const RoleOptionList: FC<Props> = ({
   options,
   target,
 }) => {
-
   const handleSelect = (value: Nullable<EmployeeRole>) => {
     onSelect(value);
     onClose();
@@ -29,7 +28,7 @@ export const RoleOptionList: FC<Props> = ({
       {options.map(({ value, label }) => {
         return (
           <li
-            key={value}
+            key={String(value)}
             className={clsx(styles.item, value === target?.value && styles.active)}
             onClick={() => handleSelect(value)}
             aria-hidden="true"

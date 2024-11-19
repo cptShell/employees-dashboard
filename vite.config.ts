@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react';
 import compression from 'vite-plugin-compression2';
 import fs from 'vite-plugin-fs';
+import copy from 'rollup-plugin-copy';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,6 +13,12 @@ export default defineConfig({
       algorithm: 'brotliCompress', exclude: [/\.(br)$ /, /\.(gz)$/],
     }),
     fs(),
+    copy({
+      targets: [
+        { src: 'employees.json', dest: 'dist' }
+      ],
+      hook: 'writeBundle' // Ensures the copy occurs after the build
+    })
   ],
   build: {
     rollupOptions: {
@@ -38,3 +45,7 @@ export default defineConfig({
     }
   }
 })
+function ViteFS(): import("vite").PluginOption {
+  throw new Error("Function not implemented.");
+}
+

@@ -59,7 +59,7 @@ export const EmployeeForm: FC<Props> = ({ employee }) => {
 
     if (!!data) navigate(RoutePath.INDEX);
   }
-  console.log(errors, role);
+
   return (
     <div className={style.container}>
       <PaperLayout>

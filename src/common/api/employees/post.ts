@@ -1,5 +1,4 @@
 import { Employee, EmployeeDto } from "@/common/type";
-import fs from "vite-plugin-fs/browser";
 import { getEmployees } from ".";
 
 export const createEmployee = async (employeeDto: EmployeeDto): Promise<Employee | null> => {
@@ -12,7 +11,10 @@ export const createEmployee = async (employeeDto: EmployeeDto): Promise<Employee
 
   const updatedEmployees = [...employees, newEmployee];
 
-  fs.writeFile(import.meta.env.VITE_API_BASE, JSON.stringify(updatedEmployees));
+  localStorage.setItem(
+    import.meta.env.VITE_STORAGE_KEY,
+    JSON.stringify(updatedEmployees)
+  );
   
   return newEmployee;
 }

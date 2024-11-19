@@ -1,5 +1,4 @@
-import fs from "vite-plugin-fs/browser";
-import { filterEmployees, sleep, sortEmployees } from "@/utils";
+import { filterEmployees, setInitialEmployees, sleep, sortEmployees } from "@/utils";
 import { Employee, EmployeeSearchParams } from "@/common/type";
 
 export const getEmployees = async (
@@ -7,7 +6,9 @@ export const getEmployees = async (
 ): Promise<Array<Employee>> => {
   await sleep(1500);
 
-  const json = await fs.readFile(import.meta.env.VITE_API_BASE);
+  const savedEmployeesJson = localStorage.getItem(import.meta.env.VITE_STORAGE_KEY);
+  const json = savedEmployeesJson !== null ? savedEmployeesJson : setInitialEmployees();
+
   let employees = JSON.parse(json) as Array<Employee>;
 
   if (typeof employees !== "object") return [];

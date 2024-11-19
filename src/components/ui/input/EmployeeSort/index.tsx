@@ -13,14 +13,14 @@ export const EmployeeSort = () => {
     <PaperLayout title="Соритровка">
       <div className={styles.buttons}>
         <EmployeeSortButton
-          key={SortName.BIRTHDAY}
+          sortKey={SortName.BIRTHDAY}
           value={SortName.BIRTHDAY === sort.key ? sort.value : SortValue.DESC}
           isActive={SortName.BIRTHDAY === sort.key}
           onClick={() => dispatch(setSortBy(SortName.BIRTHDAY))}
           title="дата рождения"
         />
         <EmployeeSortButton
-          key={SortName.NAME}
+          sortKey={SortName.NAME}
           value={SortName.NAME === sort.key ? sort.value : SortValue.DESC}
           isActive={SortName.NAME === sort.key}
           onClick={() => dispatch(setSortBy(SortName.NAME))}
